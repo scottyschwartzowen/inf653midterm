@@ -23,7 +23,6 @@
   if ($num > 0) {
     // Author array
     $authors_arr = array();
-    $authors_arr['data'] = array();
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
@@ -33,11 +32,11 @@
         'author' => $author
       );
 
-      // Push to "data"
-      array_push($authors_arr['data'], $author_item);
+      // Push to array
+      array_push($authors_arr, $author_item);
     }
 
-    // Turn it to JSON & output
+    // Turn it to JSON & output plain array
     echo json_encode($authors_arr);
 
   } else {
