@@ -1,7 +1,7 @@
 <?php
 
-  ini_set('display_errors', 1);
-  error_reporting(E_ALL);
+  ini_set('display_errors', 0);
+  error_reporting(0);
 
   header('Access-Control-Allow-Methods: PUT');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
@@ -44,7 +44,10 @@
   $result = $author->update();
   if($result === true) {
     echo json_encode(
-      array('message' => 'Author Updated')
+      array(
+        'id' => (int)$author_id,
+        'author' => $author->author
+      )
     );
   } elseif ($result === null) {
     echo json_encode(

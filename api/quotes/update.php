@@ -1,6 +1,6 @@
 <?php
-  ini_set('display_errors', 1);
-  error_reporting(E_ALL);
+  ini_set('display_errors', 0);
+  error_reporting(0);
 
   header('Access-Control-Allow-Methods: PUT');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
@@ -77,7 +77,12 @@
   $result = $quote->update();
   if($result === true) {
     echo json_encode(
-      array('message' => 'Quote Updated')
+      array(
+        'id' => (int)$quote->id,
+        'quote' => $quote->quote,
+        'author_id' => (int)$quote->author_id,
+        'category_id' => (int)$quote->category_id
+      )
     );
   } elseif ($result === null) {
     echo json_encode(
