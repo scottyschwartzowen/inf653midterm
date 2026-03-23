@@ -33,7 +33,10 @@
   // Create author
   if($author->create()) {
     echo json_encode(
-      array('message' => 'Author Created')
+      array(
+        'id' => (int)$author_id,
+        'author' => $author->author
+      )
     );
   } else {
     echo json_encode(
