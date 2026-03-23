@@ -51,7 +51,12 @@
   // Create quote
   if($quote->create()) {
     echo json_encode(
-      array('message' => 'Quote Created')
+      array(
+        'id' => (int)$quote->id,
+        'quote' => $quote->quote,
+        'author_id' => (int)$quote->author_id,
+        'category_id' => (int)$quote->category_id
+      )
     );
   } else {
     echo json_encode(
