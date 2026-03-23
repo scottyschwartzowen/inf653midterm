@@ -23,7 +23,6 @@
   if ($num > 0) {
     // Category array
     $cat_arr = array();
-    $cat_arr['data'] = array();
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
@@ -33,11 +32,11 @@
         'category' => $category
       );
 
-      // Push to "data"
-      array_push($cat_arr['data'], $cat_item);
+      // Push to array
+      array_push($cat_arr, $cat_item);
     }
 
-    // Turn it to JSON & output
+    // Turn it to JSON & output array
     echo json_encode($cat_arr);
 
   } else {
